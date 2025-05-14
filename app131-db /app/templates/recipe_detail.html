@@ -7,7 +7,7 @@
   <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
   <p><em>Posted by: {{ recipe.username }}</em></p>
 
-  {% if current_user.is_authenticated and Recipes.username == current_user.username %}
+  {% if current_user.is_authenticated and recipe.username == current_user.username %}
     <!-- Only show delete button if logged-in user is the recipe creator -->
     <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
       <button type="submit">Delete</button>
