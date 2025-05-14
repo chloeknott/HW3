@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recipes - Crave Cove</title>
+</head>
+<body>
+  <!-- Navbar -->
+    <div>
+    </div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/recipes">Recipes</a>
+    </div>
+
+  <!-- Recipes Header -->
+  <div>
+    <h1>Recipes</h1>
+    <a href="/create_recipe">+ Create Recipe</a>
+  </div>
+
+  <!-- Recipes List -->
+  <div>
+    {% if recipes %}
+      {% for recipe in recipes %}
+        <div>
+          <div>
+            <h3>{{ recipe.title }}</h3>
+            <p>{{ recipe.description }}</p>
+          </div>
+          <div>
+            <a href="{{ url_for('recipe_detail', recipe_id=recipe.id) }}">
+              View details
+            </a>
+          </div>
+
+          {% if current_user.is_authenticated and recipe.username == current_user.username %}
+            <div>
+              <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No recipes found.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

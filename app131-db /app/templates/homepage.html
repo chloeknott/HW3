@@ -1,0 +1,13 @@
+<div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/recipes">Recipes</a>
+    <a href="/favorites">Favorites</a>
+    <a href="/profile">Profile</a>
+    
+    {% if current_user.is_authenticated %}
+      <span class="nav-user">Hello, {{ current_user.username }}!</span>
+    {% else %}
+      <a href="/login">Login</a>
+    {% endif %}
+  </div>
+  

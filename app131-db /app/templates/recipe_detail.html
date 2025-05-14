@@ -1,0 +1,29 @@
+<h1>Recipe</h1>
+
+<div>
+  <h2>{{ recipe.title }}</h2>
+  <p><strong>Description:</strong> {{ recipe.description }}</p>
+  <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
+  <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
+  <p><em>Posted by: {{ recipe.username }}</em></p>
+
+  {% if current_user.is_authenticated and Recipes.username == current_user.username %}
+    <!-- Only show delete button if logged-in user is the recipe creator -->
+    <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+  {% endif %}
+</div>
+
+<div>
+  <h3>Leave a Comment</h3>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    <p>{{ form.content.label }}<br>{{ form.content() }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+</div>
+
+{% for comment in comments %}
+  <p>{{ comment.username }}: {{ comment.content }}</p>
+{% endfor %}

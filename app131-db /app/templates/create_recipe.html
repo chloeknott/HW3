@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a Recipe</title>
+</head>
+<body>
+  <header>
+    <div>
+      <span>Crave Cove</span>
+    </div>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/recipes">Recipes</a> |
+      <a href="/create">Create</a> |
+      <a href="/profile">Profile</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Create New Recipe</h2>
+      <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div>
+          <label>{{ form.title.label }}</label><br>
+          {{ form.title() }}
+        </div>
+
+        <div>
+          <label>{{ form.description.label }}</label><br>
+          {{ form.description() }}
+        </div>
+
+        <div>
+          <label>{{ form.ingredients.label }}</label><br>
+          {{ form.ingredients() }}
+        </div>
+
+        <div>
+          <label>{{ form.instructions.label }}</label><br>
+          {{ form.instructions() }}
+        </div>
+
+        <div>
+          {{ form.submit() }}
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

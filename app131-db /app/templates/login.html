@@ -1,19 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Home Page - my blog</title>
+  <meta charset="UTF-8">
+  <title>Login </title>
 </head>
-<body>
-    <h1>Sign In</h1>
-    <form action="" method="POST" novalidate>
-        {{form.hidden_tag()}}
-        <p> {{form.username.label}}</br>
-        {{form.username()}}</p>
+<body >
+  <!-- Navbar -->
+  <nav >
+    <div >
+    </div>
+    <div >
+      <a href="/">Home</a>
+      <a href="/recipes">Recipes</a>
+    </div>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% set category, message = messages[-1] %}
+    <div class="alert alert-{{ category }}">{{ message }}</div>
+  {% endif %}
+  {% endwith %}
 
-        <p>{{form.password.label}}</br>
-        <p>{{form.password()}}</p>
+  <!-- Login Form -->
+  <div >
+    <div >
+      <a href="/login" >Login</a>
+      <a href="/registration" >Sign Up</a>
+    </div>
 
-        <p>{{form.submit()}}</p>
-        <p>{{form.remember_me()}}</p>
+    <form method="POST" class="login-form">
+      {{ form.hidden_tag() }}
+
+      <label for="username">{{ form.username.label }}</label>
+      {{ form.username(class="input-field", id="username") }}
+
+      <label for="password">{{ form.password.label }}</label>
+      {{ form.password(class="input-field", id="password") }}
+
+      <div class="remember-me">
+        {{ form.remember_me() }}
+        {{ form.remember_me.label }}
+      </div>
+
+      {{ form.submit(class="submit-btn") }}
+
+      <p class="switch-link">Don't have an account? <a href="/registration">Sign up</a></p>
     </form>
+  </div>
 </body>
 </html>
